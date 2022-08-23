@@ -7,3 +7,11 @@ def get_word():
     print(word)
 
 get_word()
+
+
+def letters_guessed():
+    num_lives = 7
+    if wrong_guesses < 7:
+        print("Try another guess")
+    else wrong_guesses >= 7:
+        print("No lives left. Game over!")
