@@ -16,14 +16,21 @@ def play_game(get_word):
     word_to_guess = "_" * len(get_word())
     print(word_to_guess)
     guess = input("Please guess a letter: ").upper()
+    while not guessed and num_lives > 0:
         if guess not in word_to_guess:
-        print(f"Sorry! There is no {guess}.")
-        num_lives -= 1
-        print(f"Lives left: {num_lives}")
-        print(input("Please guess again: ").upper())
-        
-    else:
-        print(f"Correct! {guess} is in {word_to_guess}")
+            print(f"Sorry! There is no {guess}.")
+            guessed_letters.append(guess)
+            print(f"Letters already guessed: {guessed_letters}")
+            num_lives -= 1
+            print(f"Lives left: {num_lives}")
+            if num_lives > 0:
+                guess = input("Please guess another letter: ").upper()
+                if num_lives == 0:
+                    break
+        elif guess in word_to_guess:
+            print(f"Correct! {guess} is in {word_to_guess}")
+        else:
+            print("Incorrect input")
         
 
 
