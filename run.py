@@ -12,13 +12,10 @@ def get_word():
 
 
 def play_game(word):
-    player = input("Enter your name: ").upper()
-    print(f"Hello {player}! Let's play Hangman!\n ")
+    word_to_guess = "_" * len(word)
     guessed = False
     guessed_letters = []
     num_lives = 7
-    
-    
     while not guessed and num_lives > 0:
         for letter in word:
             if letter.upper() in guessed_letters:
@@ -31,6 +28,8 @@ def play_game(word):
         if guess in word:
             print(f"Correct!")
             guessed_letters.append(guess)
+        elif guess in guessed_letters:
+            print(f"You already guessed {guess}")
         elif guess not in word:
             print(f"Sorry! There is no {guess}.")
             guessed_letters.append(guess)
@@ -40,10 +39,8 @@ def play_game(word):
             if num_lives == 0:
                 print("Game over!")
                 break
-
-
-def win_or_lose(word, guess):
-    word_to_guess = "_" * len(word)
+            
+    
     letters_in_word = list(word_to_guess)
     indices = [i for i, letter in enumerate(word) if letter == guess]
     for index in indices:
@@ -59,9 +56,11 @@ def main():
     """
     Run all program functions
     """
+    player = input("Enter your name: ").upper()
+    print(f"Hello {player}! Let's play Hangman!\n ")
+
     word = get_word()
     play_game(word)
-    win_or_lose(word, guess)
 
 
 print("Welcome to Hangman!")
