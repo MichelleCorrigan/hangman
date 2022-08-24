@@ -17,7 +17,7 @@ def play_game(word):
     guessed = False
     guessed_letters = []
     num_lives = 7
-    # word_to_guess = "_" * len(word)
+    
     
     while not guessed and num_lives > 0:
         for letter in word:
@@ -38,10 +38,21 @@ def play_game(word):
             num_lives -= 1
             print(f"Lives left: {num_lives}")
             if num_lives == 0:
-                print("No lives left. Game over!")
+                print("Game over!")
                 break
-        else:
-            print("Incorrect input")
+
+
+def win_or_lose(word, guess):
+    word_to_guess = "_" * len(word)
+    letters_in_word = list(word_to_guess)
+    indices = [i for i, letter in enumerate(word) if letter == guess]
+    for index in indices:
+        letters_in_word[index] = guess
+    word_to_guess = "".join(letters_in_word)
+    if "_" not in word_to_guess:
+        print(f"You win! The word was {word}!")
+    else:
+        print(f"The word was {word}!")
 
 
 def main():
@@ -50,7 +61,8 @@ def main():
     """
     word = get_word()
     play_game(word)
-    # wrong_guesses()
+    win_or_lose(word, guess)
+
 
 print("Welcome to Hangman!")
 main()
