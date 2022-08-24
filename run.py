@@ -2,57 +2,55 @@ import random
 
 animal_words = ["Alligator", "Bear", "Cheetah", "Deer"]
 
+
 def get_word():
-    word = random.choice(animal_words)
+    """
+    Chooses a word from the list randomly
+    """
+    word = random.choice(animal_words).upper()
     return word
 
 
-def play_game(get_word):
+def play_game(word):
     player = input("Enter your name: ").upper()
     print(f"Hello {player}! Let's play Hangman!\n ")
     guessed = False
     guessed_letters = []
     num_lives = 7
-    word_to_guess = "_" * len(get_word())
-    print(word_to_guess)
-    guess = input("Please guess a letter: ").upper()
+    # word_to_guess = "_" * len(word)
+    
     while not guessed and num_lives > 0:
-        if guess not in word_to_guess:
+        for letter in word:
+            if letter.upper() in guessed_letters:
+                print(letter, end=" ")
+            else:
+                print("_", end=" ")
+        print("")
+    
+        guess = input("Please guess a letter: ").upper()
+        if guess in word:
+            print(f"Correct!")
+            guessed_letters.append(guess)
+        elif guess not in word:
             print(f"Sorry! There is no {guess}.")
             guessed_letters.append(guess)
             print(f"Letters already guessed: {guessed_letters}")
             num_lives -= 1
             print(f"Lives left: {num_lives}")
-            if num_lives > 0:
-                guess = input("Please guess another letter: ").upper()
-                if num_lives == 0:
-                    break
-        elif guess in word_to_guess:
-            print(f"Correct! {guess} is in {word_to_guess}")
+            if num_lives == 0:
+                print("No lives left. Game over!")
+                break
         else:
             print("Incorrect input")
-        
 
 
-play_game(get_word)
-    
+def main():
+    """
+    Run all program functions
+    """
+    word = get_word()
+    play_game(word)
+    # wrong_guesses()
 
-
-# def letters_guessed():
-#     num_lives = 7
-#     if wrong_guesses < 7:
-#         print("Try another guess")
-#     else wrong_guesses >= 7:
-#         print("No lives left. Game over!")
-
-
-# def main():
-#     """
-#     Run all program functions
-#     """
-#     get_word()
-#     play_game(word)
-
-
-
-# print("Welcome to Hangman!")
+print("Welcome to Hangman!")
+main()
