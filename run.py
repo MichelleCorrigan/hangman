@@ -12,6 +12,14 @@ def get_word():
 
 
 def play_game(word):
+    """
+    Function prints a '_' for each letter in the random word choosen.
+    Asks the player to input a guess, that can only contain one letter
+    for each guess.
+    Checks if the guess is in the random word.
+    Counts down the number of lives left.
+    Confirms if player has won or lost.
+    """
     print("Try to guess the word:")
     word_to_guess = "_" * len(word)
     guessed = False
@@ -55,7 +63,7 @@ def play_game(word):
 
 def play_loop():
     """
-    Function returns True if player wants to play again, if not it will return False.
+    Function asks if player wants to play again, if not, game ends.
     """
     response = input("\nPlay again? (Y/N): ").upper()
     print()
@@ -65,6 +73,60 @@ def play_loop():
         main()
     else:
         print("Thanks for playing!")
+
+
+HANGMANPICS = ['''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========''']
+
+
 
 def main():
     """
