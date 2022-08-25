@@ -25,10 +25,7 @@ def play_game(word):
         print("")
     
         guess = input("Please guess a letter: ").upper()
-        if guess in word:
-            print(f"Correct!")
-            guessed_letters.append(guess)
-        elif guess in guessed_letters:
+        if guess in guessed_letters:
             print(f"You already guessed {guess}")
         elif guess not in word:
             print(f"Sorry! There is no {guess}.")
@@ -39,29 +36,28 @@ def play_game(word):
             if num_lives == 0:
                 print("Game over!")
                 break
+        else:
+            print("Correct!")
+            guessed_letters.append(guess)
+            letters_in_word = list(word_to_guess)
+            indices = [i for i, letter in enumerate(word) if letter == guess]
+            for index in indices:
+                letters_in_word[index] = guess
+            word_to_guess = "".join(letters_in_word)
+            if "_" not in word_to_guess:
+                print(f"You win! The word was {word}!")
+                guessed = True
             
-    
-    letters_in_word = list(word_to_guess)
-    indices = [i for i, letter in enumerate(word) if letter == guess]
-    for index in indices:
-        letters_in_word[index] = guess
-    word_to_guess = "".join(letters_in_word)
-    if "_" not in word_to_guess:
-        print(f"You win! The word was {word}!")
-    else:
-        print(f"The word was {word}!")
-
 
 def main():
     """
     Run all program functions
     """
-    player = input("Enter your name: ").upper()
-    print(f"Hello {player}! Let's play Hangman!\n ")
-
     word = get_word()
     play_game(word)
 
 
 print("Welcome to Hangman!")
+player = input("Enter your name: ").upper()
+print(f"Hello {player}! Let's play Hangman!\n ")
 main()
