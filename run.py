@@ -50,19 +50,21 @@ def play_game(word):
                     print(f"You win! The word was {word}!")
                     guessed = True
         else:
-            print("Incorrect input. Please enter a single letter.")
+            print("Not a valid guess. Please enter a single letter.")
 
 
 def play_loop():
-    play_again = input("Play again: Y/N? ").upper
-    if play_again == ("Y"):
-        print("Great!")
+    """
+    Function returns True if player wants to play again, if not it will return False.
+    """
+    response = input("\nPlay again? (Y/N): ").upper()
+    print()
+
+    if response == "Y":
+        print("Great!\n")
         main()
-        # else:if play_again == "n":
     else:
         print("Thanks for playing!")
-        exit()
-
 
 def main():
     """
@@ -71,6 +73,7 @@ def main():
     word = get_word()
     play_game(word)
     play_loop()
+    
 
 print("Welcome to Hangman!")
 player = input("Enter your name: ").upper()
