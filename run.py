@@ -142,7 +142,7 @@ def main():
     play_game(word, NUM_LIVES)
     display_hangman(NUM_LIVES)
     play_loop()
-    
+
 
 print("\nWELCOME TO HANGMAN!\n")
 player = input("Enter your name: \n").upper()

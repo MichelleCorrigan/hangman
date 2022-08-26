@@ -1,31 +1,43 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# HANGMAN
 
-Welcome lalCorr,
+Hangman is a Python terminal game, which runs in the Code Institute mock terminal on Heroku
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+<p>
+<img src="vscode-remote://michellecorriga-hangman-kelgzbi7t95.ws-eu63.gitpod.io/workspace/hangman/screen-mockup.png" alt="Screens mockup">
+<p>
 
-## Reminders
+## How to play
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+Hangman is an electronic version of the classic pen-and-paper game. You can discover more about it on [Wikipedia](https://en.wikipedia.org/wiki/Hangman_(game))
+The player is asked to enter their name, then a random word is generated with dashes representing each letter. Players try to guess the letters in the word. If they guess all the letters correctly, they win. If too many letters which do not appear in the word are guessed, the player is hanged (and loses).
 
-## Creating the Heroku app
+## Features
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+### Existing Features
 
-1. `heroku/python`
-2. `heroku/nodejs`
+- Random word generation
+- Play against the computer
+- Accepts user input
+- Maintains scores
+- Displays a visual for each life lost
+- Input validation and error-checking
+  - You must enter a single letter
+  - You cannot enter the same guess twice 
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+### Future Features
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+- Include multiple word lists such as 'Movies', 'Music', 'Cars', etc so the player can choose which subject their random word is generated from.
 
-Connect your GitHub repository and deploy as normal.
 
-## Constraints
+## Testing
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+I tested the project in the following ways:
+- Passed the code through the PEP8 linter and confirmed there are no problems
+- Tested invalid inputs; more than one letter at a time, same input twice, any input other than a letter
+- Tested in my local terminal and the Code Institute Heroku terminal
 
------
-Happy coding!
+### Bugs
+
+#### Solved Bugs
+
+- When I was testing the code and entering the correct guess it wasn't updating in the word_to_guess. I fixed this by adding `.upper`
